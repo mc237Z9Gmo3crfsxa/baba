@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ثبت بیمار</title>
+</head>
+<body>
+
+<h2>ثبت بیمار</h2>
+
+<input id="fullName" placeholder="نام و نام خانوادگی"><br><br>
+<input id="mobile" placeholder="موبایل"><br><br>
+
+<button onclick="addPatient()">ثبت</button>
+
+<script>
+const API_URL = "آدرس_وب_اپ_خودت";
+
+async function addPatient() {
+  const data = {
+    fullName: document.getElementById("fullName").value,
+    mobile: document.getElementById("mobile").value
+  };
+
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  alert("ثبت شد: " + result.id);
+}
+</script>
+
+</body>
+</html>
